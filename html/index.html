@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=<!DOCTYPE html>
+    <html>
+    <head>
+        <title>Shopping Cart</title>
+        <link rel="stylesheet" href="../css/style.css">
+    </head>
+    <body>
+        <h1>Shopping Cart</h1>
+        <div id="cart">
+            <div class="item">
+                <span class="item-name">Item 1</span>
+                <button class="quantity-btn" data-id="1">+</button>
+                <span class="quantity">1</span>
+                <button class="quantity-btn" data-id="1">-</button>
+                <button class="delete-btn" data-id="1">Delete</button>
+                <button class="like-btn" data-id="1">Like</button>
+            </div>
+            <div class="item">
+                <span class="item-name">Item 2</span>
+                <button class="quantity-btn" data-id="2">+</button>
+                <span class="quantity">1</span>
+                <button class="quantity-btn" data-id="2">-</button>
+                <button class="delete-btn" data-id="2">Delete</button>
+                <button class="like-btn" data-id="2">Like</button>
+            </div>
+        </div>
+        <div id="total">Total: $<span id="total-price">0.00</span></div>
+    
+        <script src="../java/main.js"></script>
+</head>
+<body>
+
+    const quantityButtons = document.querySelectorAll('.quantity-btn');
+const deleteButtons = document.querySelectorAll('.delete-btn');
+const likeButtons = document.querySelectorAll('.like-btn');
+
+
+let totalPrice = 0;
+
+
+quantityButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        const itemId = button.getAttribute('data-id');
+        const quantityElement = button.parentElement.querySelector('.quantity');
+        let quantity = parseInt(quantityElement.textContent);
+        if (button.textContent === '+') {
+            quantity++;
+        } else if (button.textContent === '-' && quantity > 1) {
